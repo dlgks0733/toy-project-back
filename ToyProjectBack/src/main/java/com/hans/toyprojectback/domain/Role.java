@@ -25,67 +25,52 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
-* @packageName : com.hans.toyprojectback.domain 
-* @fileName : Admin.java 
-* @author : LEE HAN 
-* @date : 2022.04.20 
-* @description : 관리자 Entity
-* =========================================================== 
-* DATE AUTHOR NOTE 
-* ----------------------------------------------------------- 
-* 2022.04.20 LEE HAN 최초 생성 
-*/
+ * @packageName : com.hans.toyprojectback.domain
+ * @fileName : Role.java
+ * @author : LEE HAN
+ * @date : 2022.04.20
+ * @description : 역할 Entity
+ *              =========================================================== DATE
+ *              AUTHOR NOTE
+ *              -----------------------------------------------------------
+ *              2022.04.20 LEE HAN 최초 생성
+ */
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "admin")
-public class Admin {
-	
+@Table(name = "role")
+public class Role {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ad_seq")
-	private Long adSeq;
-	
-	@Column(name = "ad_id", length = 100, nullable = false, unique = true)
-	private String adId;
-	
-	@Column(name = "ad_name", length = 50, nullable = false)
-	private String adName;
-	
-	@Column(name = "ad_pwd", length = 100, nullable = false)
-	private String adPwd;
-	
-	@Column(name = "ad_phone", length = 20, nullable = false)
-	private String adPhone;
-	
-	@Column(name = "ad_tel", length = 20)
-	private String adTel;
-	
-	@Column(name = "ad_email", length = 100, nullable = false)
-	private String adEmail;
-	
-	@Column(name = "ad_dept", length = 40, nullable = false)
-	private String adDept;
-	
-	@Column(name = "ad_use_yn", length = 1, nullable = false)
+	@Column(name = "role_seq")
+	private Long roleSeq;
+
+	@Column(name = "role_id", length = 36, nullable = false, unique = true)
+	private String roleId;
+
+	@Column(name = "role_name", length = 50, nullable = false)
+	private String roleName;
+
+	@Column(name = "role_use_yn", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
-	private YesOrNo adUseYn;
-	
+	private YesOrNo roleUseYn;
+
 	@Column(name = "reg_id", length = 100, nullable = false)
 	private String regId;
-	
+
 	@Column(name = "reg_dt", nullable = false)
 	@CreatedDate
 	private LocalDateTime regDt;
-	
+
 	@Column(name = "chg_id", length = 100, nullable = false)
 	private String chgId;
-	
+
 	@Column(name = "chg_dt", nullable = false)
 	@LastModifiedDate
 	private LocalDateTime chg_dt;
-	
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<AdminRole> adminRoles = new LinkedHashSet<>();
 	
 }

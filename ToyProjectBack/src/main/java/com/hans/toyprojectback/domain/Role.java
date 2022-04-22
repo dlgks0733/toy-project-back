@@ -45,6 +45,9 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_seq")
 	private Long roleSeq;
+	
+	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private Set<AdminRole> adminRoles = new LinkedHashSet<>();
 
 	@Column(name = "role_id", length = 36, nullable = false, unique = true)
 	private String roleId;
@@ -70,7 +73,5 @@ public class Role {
 	@LastModifiedDate
 	private LocalDateTime chg_dt;
 
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private Set<AdminRole> adminRoles = new LinkedHashSet<>();
 	
 }

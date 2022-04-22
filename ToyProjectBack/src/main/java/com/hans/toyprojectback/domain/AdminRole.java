@@ -35,7 +35,6 @@ public class AdminRole {
 	@Column(name = "ad_role_seq")
 	private Long adRoleSeq;
 	
-	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "ad_seq")
 	private Admin admin;

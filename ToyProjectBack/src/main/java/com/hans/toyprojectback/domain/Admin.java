@@ -1,26 +1,26 @@
 package com.hans.toyprojectback.domain;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.hans.toyprojectback.dto.AdminDto;
 import com.hans.toyprojectback.enums.YesOrNo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -37,8 +37,10 @@ import lombok.NoArgsConstructor;
 */
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "admin")
+@Builder
 public class Admin {
 	
 	@Id
@@ -46,46 +48,87 @@ public class Admin {
 	@Column(name = "ad_seq")
 	private Long adSeq;
 	
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private Set<AdminRole> adminRoles = new LinkedHashSet<>();
+	//TODO: role 등록 구현 후에 adminRole 테스트
+//	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//	private Set<AdminRole> adminRoles;
 	
 	@Column(name = "ad_id", length = 100, nullable = false, unique = true)
+	@NotNull
+	@Size(max = 100)
 	private String adId;
 	
 	@Column(name = "ad_name", length = 50, nullable = false)
+	@NotNull
+	@Size(max = 50)
 	private String adName;
 	
 	@Column(name = "ad_pwd", length = 100, nullable = false)
+	@NotNull
+	@Size(max = 100)
 	private String adPwd;
 	
 	@Column(name = "ad_phone", length = 20, nullable = false)
+	@NotNull
+	@Size(max = 20)
 	private String adPhone;
 	
 	@Column(name = "ad_tel", length = 20)
+	@Size(max = 20)
 	private String adTel;
 	
 	@Column(name = "ad_email", length = 100, nullable = false)
+	@NotNull
+	@Size(max = 100)
 	private String adEmail;
 	
 	@Column(name = "ad_dept", length = 40, nullable = false)
+	@NotNull
+	@Size(max = 40)
 	private String adDept;
 	
 	@Column(name = "ad_use_yn", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
+	@NotNull
+//	@Size(max = 2)
 	private YesOrNo adUseYn;
 	
 	@Column(name = "reg_id", length = 100, nullable = false)
+	@NotNull
+	@Size(max = 100)
 	private String regId;
 	
 	@Column(name = "reg_dt", nullable = false)
 	@CreatedDate
+	@NotNull
 	private LocalDateTime regDt;
 	
 	@Column(name = "chg_id", length = 100, nullable = false)
+	@NotNull
+	@Size(max = 100)
 	private String chgId;
 	
 	@Column(name = "chg_dt", nullable = false)
 	@LastModifiedDate
-	private LocalDateTime chg_dt;
+	@NotNull
+	private LocalDateTime chgDt;
+	
+	public static Admin toEntity(AdminDto dto) {
+		return Admin.builder()
+				.adSeq(dto.getAdSeq())
+//				.adminRoles(dto.getAdminRoles())
+				.adId(dto.getAdId())
+				.adName(dto.getAdName())
+				.adPwd(dto.getAdPwd())
+				.adPhone(dto.getAdPhone())
+				.adTel(dto.getAdTel())
+				.adEmail(dto.getAdEmail())
+				.adDept(dto.getAdDept())
+				.adUseYn(dto.getAdUseYn())
+				.regId(dto.getRegId())
+				.regDt(dto.getRegDt())
+				.chgId(dto.getChgId())
+				.chgDt(dto.getChgDt())
+				.build();
+	}
 	
 }

@@ -10,13 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import com.hans.toyprojectback.dto.AdminDto;
+import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -41,7 +39,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "admin")
 @Builder
-public class Admin {
+public class Admin extends BaseTimeEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,66 +51,45 @@ public class Admin {
 //	private Set<AdminRole> adminRoles;
 	
 	@Column(name = "ad_id", length = 100, nullable = false, unique = true)
-	@NotNull
-	@Size(max = 100)
 	private String adId;
 	
 	@Column(name = "ad_name", length = 50, nullable = false)
-	@NotNull
-	@Size(max = 50)
 	private String adName;
 	
 	@Column(name = "ad_pwd", length = 100, nullable = false)
-	@NotNull
-	@Size(max = 100)
 	private String adPwd;
 	
 	@Column(name = "ad_phone", length = 20, nullable = false)
-	@NotNull
-	@Size(max = 20)
 	private String adPhone;
 	
 	@Column(name = "ad_tel", length = 20)
-	@Size(max = 20)
 	private String adTel;
 	
 	@Column(name = "ad_email", length = 100, nullable = false)
-	@NotNull
-	@Size(max = 100)
 	private String adEmail;
 	
 	@Column(name = "ad_dept", length = 40, nullable = false)
-	@NotNull
-	@Size(max = 40)
 	private String adDept;
 	
 	@Column(name = "ad_use_yn", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
-	@NotNull
-//	@Size(max = 2)
 	private YesOrNo adUseYn;
 	
 	@Column(name = "reg_id", length = 100, nullable = false)
-	@NotNull
-	@Size(max = 100)
 	private String regId;
 	
 	@Column(name = "reg_dt", nullable = false)
 	@CreatedDate
-	@NotNull
 	private LocalDateTime regDt;
 	
 	@Column(name = "chg_id", length = 100, nullable = false)
-	@NotNull
-	@Size(max = 100)
 	private String chgId;
 	
 	@Column(name = "chg_dt", nullable = false)
 	@LastModifiedDate
-	@NotNull
 	private LocalDateTime chgDt;
 	
-	public static Admin toEntity(AdminDto dto) {
+	public static Admin toEntity(AdminCreateDTO dto) {
 		return Admin.builder()
 				.adSeq(dto.getAdSeq())
 //				.adminRoles(dto.getAdminRoles())
@@ -125,9 +102,7 @@ public class Admin {
 				.adDept(dto.getAdDept())
 				.adUseYn(dto.getAdUseYn())
 				.regId(dto.getRegId())
-				.regDt(dto.getRegDt())
 				.chgId(dto.getChgId())
-				.chgDt(dto.getChgDt())
 				.build();
 	}
 	

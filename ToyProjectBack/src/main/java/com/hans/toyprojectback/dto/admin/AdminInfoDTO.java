@@ -1,4 +1,4 @@
-package com.hans.toyprojectback.dto;
+package com.hans.toyprojectback.dto.admin;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -12,23 +12,29 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+* @packageName : com.hans.toyprojectback.dto.admin 
+* @fileName : AdminInfoDTO.java 
+* @author : LEE HAN 
+* @date : 2022.04.24 
+* @description : Admin 정보 DTO
+* =========================================================== 
+* DATE AUTHOR NOTE 
+* ----------------------------------------------------------- 
+* 2022.04.24 LEE HAN 최초 생성 
+*/
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdminDto {
-	
-	// TODO: DTO @NotEmpty 추가
-	
-	private Long adSeq;
+public class AdminInfoDTO {
 	
 	private Set<AdminRole> adminRoles;
 	
 	private String adId;
 	
 	private String adName;
-	
-	private String adPwd;
 	
 	private String adPhone;
 	
@@ -48,13 +54,11 @@ public class AdminDto {
 	
 	private LocalDateTime chgDt;
 	
-	public static AdminDto toDto(Admin admin) {
-		return AdminDto.builder()
-				.adSeq(admin.getAdSeq())
+	public static AdminInfoDTO toDto(Admin admin) {
+		return AdminInfoDTO.builder()
 //				.adminRoles(admin.getAdminRoles())
 				.adId(admin.getAdId())
 				.adName(admin.getAdName())
-				.adPwd(admin.getAdPwd())
 				.adPhone(admin.getAdPhone())
 				.adTel(admin.getAdTel())
 				.adEmail(admin.getAdEmail())
@@ -66,5 +70,4 @@ public class AdminDto {
 				.chgDt(admin.getChgDt())
 				.build();
 	}
-	
 }

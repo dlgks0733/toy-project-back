@@ -1,18 +1,18 @@
 package com.hans.toyprojectback.domain;
 
-import java.time.LocalDateTime;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
@@ -46,9 +46,8 @@ public class Admin extends BaseTimeEntity {
 	@Column(name = "ad_seq")
 	private Long adSeq;
 	
-	//TODO: role 등록 구현 후에 adminRole 테스트
-//	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//	private Set<AdminRole> adminRoles;
+	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private Set<AdminRole> adminRoles;
 	
 	@Column(name = "ad_id", length = 100, nullable = false, unique = true)
 	private String adId;
@@ -78,21 +77,12 @@ public class Admin extends BaseTimeEntity {
 	@Column(name = "reg_id", length = 100, nullable = false)
 	private String regId;
 	
-	@Column(name = "reg_dt", nullable = false)
-	@CreatedDate
-	private LocalDateTime regDt;
-	
 	@Column(name = "chg_id", length = 100, nullable = false)
 	private String chgId;
 	
-	@Column(name = "chg_dt", nullable = false)
-	@LastModifiedDate
-	private LocalDateTime chgDt;
-	
 	public static Admin toEntity(AdminCreateDTO dto) {
 		return Admin.builder()
-				.adSeq(dto.getAdSeq())
-//				.adminRoles(dto.getAdminRoles())
+				.adminRoles(dto.getAdminRoles())
 				.adId(dto.getAdId())
 				.adName(dto.getAdName())
 				.adPwd(dto.getAdPwd())

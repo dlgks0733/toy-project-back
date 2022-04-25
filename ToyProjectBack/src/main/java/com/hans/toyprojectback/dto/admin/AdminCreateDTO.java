@@ -30,8 +30,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AdminCreateDTO {
 	
-	private Long adSeq;
-	
 	private Set<AdminRole> adminRoles;
 	
 	@NotNull

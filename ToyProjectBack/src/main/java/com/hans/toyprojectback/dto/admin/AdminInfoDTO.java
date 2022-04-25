@@ -56,7 +56,7 @@ public class AdminInfoDTO {
 	
 	public static AdminInfoDTO toDto(Admin admin) {
 		return AdminInfoDTO.builder()
-//				.adminRoles(admin.getAdminRoles())
+				.adminRoles(admin.getAdminRoles())
 				.adId(admin.getAdId())
 				.adName(admin.getAdName())
 				.adPhone(admin.getAdPhone())

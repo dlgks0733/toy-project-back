@@ -1,6 +1,5 @@
 package com.hans.toyprojectback.domain;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.hans.toyprojectback.dto.role.RoleCreateDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,8 +35,10 @@ import lombok.NoArgsConstructor;
  */
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "role")
+@Builder
 public class Role extends BaseTimeEntity {
 
 	@Id
@@ -43,7 +47,7 @@ public class Role extends BaseTimeEntity {
 	private Long roleSeq;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private Set<AdminRole> adminRoles = new LinkedHashSet<>();
+	private Set<AdminRole> adminRoles;
 
 	@Column(name = "role_id", length = 36, nullable = false, unique = true)
 	private String roleId;
@@ -61,5 +65,15 @@ public class Role extends BaseTimeEntity {
 	@Column(name = "chg_id", length = 100, nullable = false)
 	private String chgId;
 
+	public static Role toEntity(RoleCreateDTO dto) {
+		return Role.builder()
+				.adminRoles(dto.getAdminRoles())
+				.roleId(dto.getRoleId())
+				.roleName(dto.getRoleName())
+				.roleUseYn(dto.getRoleUseYn())
+				.regId(dto.getRegId())
+				.chgId(dto.getChgId())
+				.build();
+	}
 	
 }

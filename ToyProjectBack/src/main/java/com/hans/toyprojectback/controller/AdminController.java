@@ -36,6 +36,13 @@ public class AdminController {
 
 	private final AdminService adminService;
 	
+	/** 
+	* @methodName : create 
+	* @author : LEE HAN 
+	* @date : 2022.04.25 
+	* @param dto
+	* @return 
+	*/
 	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminInfoDTO> create(@RequestBody @Valid AdminCreateDTO dto) {
 		log.info("Admin Controller Create::: " + dto);

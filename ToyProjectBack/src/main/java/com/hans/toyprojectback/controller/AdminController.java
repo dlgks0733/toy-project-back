@@ -43,10 +43,9 @@ public class AdminController {
 	* @param dto
 	* @return 
 	*/
-	// TODO: 패스워드 암호화 처리 추가
 	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminInfoDTO> create(@RequestBody @Valid AdminCreateDTO dto) {
-		log.info("Admin Controller Create::: " + dto);
+		log.info("Admin Controller Create");
 		return ResponseEntity.ok(adminService.create(dto));
 	}
 	

@@ -16,6 +16,17 @@ import com.hans.toyprojectback.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+* @packageName : com.hans.toyprojectback.controller 
+* @fileName : RoleController.java 
+* @author : LEE HAN 
+* @date : 2022.04.26 
+* @description : 
+* =========================================================== 
+* DATE AUTHOR NOTE 
+* ----------------------------------------------------------- 
+* 2022.04.26 LEE HAN 최초 생성 
+*/
 @RestController
 @RequestMapping("/api/role")
 @RequiredArgsConstructor
@@ -24,6 +35,13 @@ public class RoleController {
 	
 	private final RoleService roleService;
 	
+	/** 
+	* @methodName : create 
+	* @author : LEE HAN 
+	* @date : 2022.04.26 
+	* @param dto
+	* @return 
+	*/
 	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RoleInfoDTO> create(@RequestBody @Valid RoleCreateDTO dto) {
 		log.info("Role Create::: " + dto);

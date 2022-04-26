@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hans.toyprojectback.domain.AdminRole;
 import com.hans.toyprojectback.enums.YesOrNo;
 
@@ -40,6 +41,7 @@ public class AdminCreateDTO {
 	@Size(min = 2, max = 50)
 	private String adName;
 	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull
 	@Size(min = 6 ,max = 100)
 	private String adPwd;

@@ -1,5 +1,6 @@
 package com.hans.toyprojectback.service.impl;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hans.toyprojectback.domain.Admin;
@@ -30,8 +31,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	private final AdminRepository adminRepository;
 	
+	private final PasswordEncoder passwordEncoder;
+	
 	@Override
 	public AdminInfoDTO create(AdminCreateDTO dto) {
+		String encodePwd = passwordEncoder.encode(dto.getAdPwd());
+		dto.setAdPwd(encodePwd);
 		log.info("Admin Service Create::: " + dto);
 		return AdminInfoDTO.toDto(adminRepository.save(Admin.toEntity(dto)));
 	}

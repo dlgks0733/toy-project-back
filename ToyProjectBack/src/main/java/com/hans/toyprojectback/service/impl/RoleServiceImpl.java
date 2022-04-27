@@ -2,7 +2,6 @@ package com.hans.toyprojectback.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.hans.toyprojectback.domain.Role;
 import com.hans.toyprojectback.dto.role.RoleCreateDTO;
 import com.hans.toyprojectback.dto.role.RoleInfoDTO;
 import com.hans.toyprojectback.repository.RoleRepository;
@@ -21,7 +20,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public RoleInfoDTO create(RoleCreateDTO dto) {
 		log.info("Role Service Create::: " + dto);
-		return RoleInfoDTO.toDto(roleRepository.save(Role.toEntity(dto)));
+		return roleRepository.save(dto.toEntity()).toInfoDto();
 	}
 
 }

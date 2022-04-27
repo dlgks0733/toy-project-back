@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
+import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -36,9 +36,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "admin")
-@Builder
 public class Admin extends BaseTimeEntity {
 	
 	@Id
@@ -80,20 +80,32 @@ public class Admin extends BaseTimeEntity {
 	@Column(name = "chg_id", length = 100, nullable = false)
 	private String chgId;
 	
-	public static Admin toEntity(AdminCreateDTO dto) {
-		return Admin.builder()
-				.adminRoles(dto.getAdminRoles())
-				.adId(dto.getAdId())
-				.adName(dto.getAdName())
-				.adPwd(dto.getAdPwd())
-				.adPhone(dto.getAdPhone())
-				.adTel(dto.getAdTel())
-				.adEmail(dto.getAdEmail())
-				.adDept(dto.getAdDept())
-				.adUseYn(dto.getAdUseYn())
-				.regId(dto.getRegId())
-				.chgId(dto.getChgId())
+	public AdminInfoDTO toInfoDto() {
+		return AdminInfoDTO.builder()
+				.adminRoles(adminRoles)
+				.adId(adId)
+				.adName(adName)
+				.adPhone(adPhone)
+				.adTel(adTel)
+				.adEmail(adEmail)
+				.adDept(adDept)
+				.adUseYn(adUseYn)
+				.regId(regId)
+				.regDt(getRegDt())
+				.chgId(chgId)
+				.chgDt(getChgDt())
 				.build();
+				
+	}
+	
+	public void update(String adPhone, String adTel, String adEmail, 
+			String adDept, YesOrNo adUseYn, String chgId) {
+		this.adPhone = adPhone;
+		this.adTel = adTel;
+		this.adEmail = adEmail;
+		this.adDept = adDept;
+		this.adUseYn = adUseYn;
+		this.chgId = chgId;
 	}
 	
 }

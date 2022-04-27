@@ -5,12 +5,11 @@ import java.util.Set;
 import javax.validation.constraints.Size;
 
 import com.hans.toyprojectback.domain.AdminRole;
+import com.hans.toyprojectback.domain.Role;
 import com.hans.toyprojectback.enums.YesOrNo;
 import com.sun.istack.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
 * @packageName : com.hans.toyprojectback.dto.role 
@@ -24,8 +23,6 @@ import lombok.NoArgsConstructor;
 * 2022.04.25 LEE HAN 최초 생성 
 */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class RoleCreateDTO {
 	
 	private Set<AdminRole> adminRoles;
@@ -48,4 +45,15 @@ public class RoleCreateDTO {
 	@NotNull
 	@Size(min = 6, max = 100)
 	private String chgId;
+	
+	public Role toEntity() {
+		return Role.builder()
+				.adminRoles(adminRoles)
+				.roleId(roleId)
+				.roleName(roleName)
+				.roleUseYn(roleUseYn)
+				.regId(regId)
+				.chgId(chgId)
+				.build();
+	}
 }

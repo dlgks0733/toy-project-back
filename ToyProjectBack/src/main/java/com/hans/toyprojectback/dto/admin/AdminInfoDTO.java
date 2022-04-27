@@ -3,7 +3,6 @@ package com.hans.toyprojectback.dto.admin;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import com.hans.toyprojectback.domain.Admin;
 import com.hans.toyprojectback.domain.AdminRole;
 import com.hans.toyprojectback.enums.YesOrNo;
 
@@ -53,21 +52,4 @@ public class AdminInfoDTO {
 	private String chgId;
 	
 	private LocalDateTime chgDt;
-	
-	public static AdminInfoDTO toDto(Admin admin) {
-		return AdminInfoDTO.builder()
-				.adminRoles(admin.getAdminRoles())
-				.adId(admin.getAdId())
-				.adName(admin.getAdName())
-				.adPhone(admin.getAdPhone())
-				.adTel(admin.getAdTel())
-				.adEmail(admin.getAdEmail())
-				.adDept(admin.getAdDept())
-				.adUseYn(admin.getAdUseYn())
-				.regId(admin.getRegId())
-				.regDt(admin.getRegDt())
-				.chgId(admin.getChgId())
-				.chgDt(admin.getChgDt())
-				.build();
-	}
 }

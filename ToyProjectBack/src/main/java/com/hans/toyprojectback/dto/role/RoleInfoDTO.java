@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.hans.toyprojectback.domain.AdminRole;
-import com.hans.toyprojectback.domain.Role;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -44,18 +43,5 @@ public class RoleInfoDTO {
 	private String chgId;
 	
 	private LocalDateTime chgDt;
-	
-	public static RoleInfoDTO toDto(Role role) {
-		return RoleInfoDTO.builder()
-				.adminRoles(role.getAdminRoles())
-				.roleId(role.getRoleId())
-				.roleName(role.getRoleName())
-				.roleUseYn(role.getRoleUseYn())
-				.regId(role.getRegId())
-				.regDt(role.getRegDt())
-				.chgId(role.getChgId())
-				.chgDt(role.getChgDt())
-				.build();
-	}
 	
 }

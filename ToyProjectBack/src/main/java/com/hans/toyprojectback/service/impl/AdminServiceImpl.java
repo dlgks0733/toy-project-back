@@ -1,11 +1,14 @@
 package com.hans.toyprojectback.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hans.toyprojectback.domain.Admin;
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
+import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 import com.hans.toyprojectback.repository.AdminRepository;
 import com.hans.toyprojectback.service.AdminService;
 
@@ -38,7 +41,21 @@ public class AdminServiceImpl implements AdminService {
 		String encodePwd = passwordEncoder.encode(dto.getAdPwd());
 		dto.setAdPwd(encodePwd);
 		log.info("Admin Service Create::: " + dto);
-		return AdminInfoDTO.toDto(adminRepository.save(Admin.toEntity(dto)));
+		return adminRepository.save(dto.toEntity()).toInfoDto();
 	}
+
+	@Override
+	public AdminInfoDTO getInfoBySeq(Long seq) {
+		log.info("Admin Service GetInfoBySeq::: " + seq);
+		return adminRepository.findById(seq).orElseThrow(IllegalArgumentException::new).toInfoDto();
+	}
+
+	@Transactional
+	@Override
+	public AdminInfoDTO update(Long seq, AdminUpdateDTO dto) {
+		Admin admin = adminRepository.findById(seq).orElseThrow(IllegalArgumentException::new);
+		admin.update(dto.getAdPhone(), dto.getAdTel(), dto.getAdEmail(), dto.getAdDept(), dto.getAdUseYn(), dto.getChgId());
+		return admin.toInfoDto();
+	}	
 
 }

@@ -7,12 +7,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hans.toyprojectback.domain.Admin;
 import com.hans.toyprojectback.domain.AdminRole;
 import com.hans.toyprojectback.enums.YesOrNo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 /**
@@ -27,8 +26,6 @@ import lombok.NoArgsConstructor;
 * 2022.04.24 LEE HAN 최초 생성 
 */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AdminCreateDTO {
 	
 	private Set<AdminRole> adminRoles;
@@ -72,5 +69,21 @@ public class AdminCreateDTO {
 	@NotNull
 	@Size(min = 6, max = 100)
 	private String chgId;
+	
+	public Admin toEntity() {
+		return Admin.builder()
+				.adminRoles(adminRoles)
+				.adId(adId)
+				.adName(adName)
+				.adPwd(adPwd)
+				.adPhone(adPhone)
+				.adTel(adTel)
+				.adEmail(adEmail)
+				.adDept(adDept)
+				.adUseYn(adUseYn)
+				.regId(regId)
+				.chgId(chgId)
+				.build();
+	}
 	
 }

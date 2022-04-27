@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.hans.toyprojectback.dto.role.RoleCreateDTO;
+import com.hans.toyprojectback.dto.role.RoleInfoDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -64,15 +64,17 @@ public class Role extends BaseTimeEntity {
 
 	@Column(name = "chg_id", length = 100, nullable = false)
 	private String chgId;
-
-	public static Role toEntity(RoleCreateDTO dto) {
-		return Role.builder()
-				.adminRoles(dto.getAdminRoles())
-				.roleId(dto.getRoleId())
-				.roleName(dto.getRoleName())
-				.roleUseYn(dto.getRoleUseYn())
-				.regId(dto.getRegId())
-				.chgId(dto.getChgId())
+	
+	public RoleInfoDTO toInfoDto() {
+		return RoleInfoDTO.builder()
+				.adminRoles(adminRoles)
+				.roleId(roleId)
+				.roleName(roleName)
+				.roleUseYn(roleUseYn)
+				.regId(regId)
+				.regDt(getRegDt())
+				.chgId(chgId)
+				.chgDt(getChgDt())
 				.build();
 	}
 	

@@ -66,4 +66,18 @@ public class ExceptionAdvisor {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
 	}
 	
+	/** 
+	* @methodName : illegalArgumentException 
+	* @author : LEE HAN 
+	* @date : 2022.04.27 
+	* @param exception
+	* @return 
+	*/
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<ErrorResponse> illegalArgumentException(IllegalArgumentException exception) {
+		ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), "", "부적합한 인수 전달", null);
+		
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+	}
+	
 }

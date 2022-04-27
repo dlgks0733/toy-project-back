@@ -76,7 +76,6 @@ public class ExceptionAdvisor {
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ResponseEntity<ErrorResponse> illegalArgumentException(IllegalArgumentException exception) {
 		ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), "", "부적합한 인수 전달", null);
-		
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 	}
 	

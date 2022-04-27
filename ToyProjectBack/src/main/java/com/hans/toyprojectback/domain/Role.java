@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.hans.toyprojectback.dto.role.RoleInfoDTO;
+import com.hans.toyprojectback.dto.role.RoleListDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -76,6 +77,20 @@ public class Role extends BaseTimeEntity {
 				.chgId(chgId)
 				.chgDt(getChgDt())
 				.build();
+	}
+	
+	public RoleListDTO toListDto() {
+		return RoleListDTO.builder()
+				.roleId(roleId)
+				.roleName(roleName)
+				.roleUseYn(roleUseYn)
+				.build();
+	}
+	
+	public void update(String roleId, String roleName, YesOrNo roleUseYn) {
+		this.roleId = roleId;
+		this.roleName = roleName;
+		this.roleUseYn = roleUseYn;
 	}
 	
 }

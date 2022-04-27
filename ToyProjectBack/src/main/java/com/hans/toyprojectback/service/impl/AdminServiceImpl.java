@@ -1,5 +1,8 @@
 package com.hans.toyprojectback.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hans.toyprojectback.domain.Admin;
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
+import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 import com.hans.toyprojectback.repository.AdminRepository;
 import com.hans.toyprojectback.service.AdminService;
@@ -36,6 +40,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	private final PasswordEncoder passwordEncoder;
 	
+	@Transactional
 	@Override
 	public AdminInfoDTO create(AdminCreateDTO dto) {
 		String encodePwd = passwordEncoder.encode(dto.getAdPwd());
@@ -49,13 +54,20 @@ public class AdminServiceImpl implements AdminService {
 		log.info("Admin Service GetInfoBySeq::: " + seq);
 		return adminRepository.findById(seq).orElseThrow(IllegalArgumentException::new).toInfoDto();
 	}
+	
+	@Override
+	public List<AdminListDTO> getList() {
+		log.info("Admin Service GetList::: ");
+		return adminRepository.findAll().stream().map(Admin::toListDto).collect(Collectors.toList());
+	}	
 
 	@Transactional
 	@Override
 	public AdminInfoDTO update(Long seq, AdminUpdateDTO dto) {
+		log.info("Admin Service Update::: " + seq);
 		Admin admin = adminRepository.findById(seq).orElseThrow(IllegalArgumentException::new);
 		admin.update(dto.getAdPhone(), dto.getAdTel(), dto.getAdEmail(), dto.getAdDept(), dto.getAdUseYn(), dto.getChgId());
 		return admin.toInfoDto();
-	}	
+	}
 
 }

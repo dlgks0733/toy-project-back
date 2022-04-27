@@ -1,6 +1,8 @@
 package com.hans.toyprojectback.controller;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
+import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 import com.hans.toyprojectback.service.AdminService;
 
@@ -64,6 +67,18 @@ public class AdminController {
 	public ResponseEntity<AdminInfoDTO> getInfoBySeq(@PathVariable(name = "seq") Long seq) {
 		log.info("Admin Controller GetInfoBySeq::: " + seq);
 		return ResponseEntity.ok(adminService.getInfoBySeq(seq));
+	}
+	
+	/** 
+	* @methodName : getList 
+	* @author : LEE HAN 
+	* @date : 2022.04.27 
+	* @return 
+	*/
+	@GetMapping(value = "/list")
+	public ResponseEntity<List<AdminListDTO>> getList() {
+		log.info("Admin Controller GetList::: ");
+		return ResponseEntity.ok(adminService.getList());
 	}
 	
 	/** 

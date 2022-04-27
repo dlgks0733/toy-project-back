@@ -1,7 +1,10 @@
 package com.hans.toyprojectback.service;
 
+import java.util.List;
+
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
+import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 
 /**
@@ -35,6 +38,14 @@ public interface AdminService {
 	* @return 
 	*/
 	public AdminInfoDTO getInfoBySeq(Long seq);
+	
+	/** 
+	* @methodName : getList 
+	* @author : LEE HAN 
+	* @date : 2022.04.27 
+	* @return 
+	*/
+	public List<AdminListDTO> getList();
 	
 	/** 
 	* @methodName : update 

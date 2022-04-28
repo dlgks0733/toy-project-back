@@ -49,7 +49,7 @@ public class RoleController {
 	* @param dto
 	* @return 
 	*/
-	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RoleInfoDTO> create(@RequestBody @Valid RoleCreateDTO dto) {
 		log.info("Role Controller Create::: " + dto);
 		return ResponseEntity.ok(roleService.create(dto));
@@ -62,7 +62,7 @@ public class RoleController {
 	* @param seq
 	* @return 
 	*/
-	@GetMapping(value = "/info/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RoleInfoDTO> getInfoBySeq(@PathVariable(name = "seq") Long seq) {
 		log.info("Role Controller GetInfoBySeq::: " + seq);
 		return ResponseEntity.ok(roleService.getInfoBySeq(seq));
@@ -74,7 +74,7 @@ public class RoleController {
 	* @date : 2022.04.27 
 	* @return 
 	*/
-	@GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RoleListDTO>> getList() {
 		log.info("Role Controller GetList::: ");
 		return ResponseEntity.ok(roleService.getList());
@@ -88,7 +88,7 @@ public class RoleController {
 	* @param dto
 	* @return 
 	*/
-	@PutMapping(value = "/update/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RoleInfoDTO> update(@PathVariable(name = "seq") Long seq, @RequestBody @Valid RoleUpdateDTO dto) {
 		log.info("Role Controller Update::: " + dto);
 		return ResponseEntity.ok(roleService.update(seq, dto));

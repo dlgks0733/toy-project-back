@@ -50,7 +50,7 @@ public class AdminController {
 	* @param dto
 	* @return 
 	*/
-	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminInfoDTO> create(@RequestBody @Valid AdminCreateDTO dto) {
 		log.info("Admin Controller Create");
 		return ResponseEntity.ok(adminService.create(dto));
@@ -63,7 +63,7 @@ public class AdminController {
 	* @param seq
 	* @return 
 	*/
-	@GetMapping(value = "/info/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminInfoDTO> getInfoBySeq(@PathVariable(name = "seq") Long seq) {
 		log.info("Admin Controller GetInfoBySeq::: " + seq);
 		return ResponseEntity.ok(adminService.getInfoBySeq(seq));
@@ -75,7 +75,7 @@ public class AdminController {
 	* @date : 2022.04.27 
 	* @return 
 	*/
-	@GetMapping(value = "/list")
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AdminListDTO>> getList() {
 		log.info("Admin Controller GetList::: ");
 		return ResponseEntity.ok(adminService.getList());
@@ -88,7 +88,7 @@ public class AdminController {
 	* @param dto
 	* @return 
 	*/
-	@PutMapping(value = "/update/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/{seq}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminInfoDTO> update(@PathVariable("seq") Long seq, @RequestBody @Valid AdminUpdateDTO dto) {
 		log.info("Admin Controller Update::: " + dto);
 		return ResponseEntity.ok(adminService.update(seq, dto));

@@ -32,15 +32,18 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 	@Override
 	public AdminInfoDTO create(AdminRoleCreateDTO dto) {
 		log.info("AdminRole Service Create::: " + dto);
+		
 		Admin admin = adminRepository.findById(dto.getAdSeq()).orElseThrow(IllegalArgumentException::new);
-		Role role = roleRepository.findById(dto.getRoleSeq()).orElseThrow(IllegalArgumentException::new);
+		dto.getRoleSeqList().forEach((seq) -> {
+			Role role = roleRepository.findById(seq).orElseThrow(IllegalArgumentException::new);
+			AdminRole adminRole = AdminRole.builder()
+					.admin(admin)
+					.role(role)
+					.build();
+			
+			adminRoleRepository.save(adminRole);
+		});;
 		
-		AdminRole adminRole = AdminRole.builder()
-				.admin(admin)
-				.role(role)
-				.build();
-		
-		adminRoleRepository.save(adminRole);
 		
 		return admin.toInfoDto();
 	}

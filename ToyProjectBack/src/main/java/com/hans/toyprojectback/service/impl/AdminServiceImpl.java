@@ -1,5 +1,6 @@
 package com.hans.toyprojectback.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,10 +10,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hans.toyprojectback.domain.Admin;
+import com.hans.toyprojectback.domain.Role;
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
 import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
+import com.hans.toyprojectback.dto.role.RoleSummaryInfoDTO;
 import com.hans.toyprojectback.repository.AdminRepository;
 import com.hans.toyprojectback.service.AdminService;
 
@@ -52,7 +55,22 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminInfoDTO getInfoBySeq(Long seq) {
 		log.info("Admin Service GetInfoBySeq::: " + seq);
-		return adminRepository.findById(seq).orElseThrow(IllegalArgumentException::new).toInfoDto();
+		
+		Admin admin = adminRepository.findById(seq).orElseThrow(IllegalArgumentException::new);
+		AdminInfoDTO adminInfo = admin.toInfoDto();
+		
+		List<RoleSummaryInfoDTO> list = new ArrayList<RoleSummaryInfoDTO>();
+		admin.getAdminRoles().forEach((adminRole) -> {
+			Role role = adminRole.getRole();
+			RoleSummaryInfoDTO roleSummaryInfo = new RoleSummaryInfoDTO();
+			roleSummaryInfo.setRoleId(role.getRoleId());
+			roleSummaryInfo.setRoleName(role.getRoleName());
+			roleSummaryInfo.setRoleUseYn(role.getRoleUseYn());
+			list.add(roleSummaryInfo);
+		});
+		adminInfo.setRoleSummaryInfoList(list);
+		
+		return adminInfo;
 	}
 	
 	@Override

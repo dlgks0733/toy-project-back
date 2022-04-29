@@ -1,7 +1,9 @@
 package com.hans.toyprojectback.dto.admin;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.hans.toyprojectback.dto.role.RoleSummaryInfoDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -26,6 +28,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class AdminInfoDTO {
+	
+	private List<RoleSummaryInfoDTO> roleSummaryInfoList;
 	
 	private String adId;
 	

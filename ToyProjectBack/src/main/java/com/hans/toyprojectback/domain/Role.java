@@ -1,6 +1,6 @@
 package com.hans.toyprojectback.domain;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class Role extends BaseTimeEntity {
 	private Long roleSeq;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private Set<AdminRole> adminRoles;
+	private List<AdminRole> adminRoles;
 
 	@Column(name = "role_id", length = 36, nullable = false, unique = true)
 	private String roleId;

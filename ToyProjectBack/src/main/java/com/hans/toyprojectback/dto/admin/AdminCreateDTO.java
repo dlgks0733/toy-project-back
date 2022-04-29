@@ -1,14 +1,11 @@
 package com.hans.toyprojectback.dto.admin;
 
-import java.util.Set;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hans.toyprojectback.domain.Admin;
-import com.hans.toyprojectback.domain.AdminRole;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.Data;
@@ -27,8 +24,6 @@ import lombok.Data;
 */
 @Data
 public class AdminCreateDTO {
-	
-	private Set<AdminRole> adminRoles;
 	
 	@NotNull
 	@Size(min = 6, max = 100)
@@ -72,7 +67,6 @@ public class AdminCreateDTO {
 	
 	public Admin toEntity() {
 		return Admin.builder()
-				.adminRoles(adminRoles)
 				.adId(adId)
 				.adName(adName)
 				.adPwd(adPwd)

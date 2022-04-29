@@ -1,10 +1,7 @@
 package com.hans.toyprojectback.dto.role;
 
-import java.util.Set;
-
 import javax.validation.constraints.Size;
 
-import com.hans.toyprojectback.domain.AdminRole;
 import com.hans.toyprojectback.domain.Role;
 import com.hans.toyprojectback.enums.YesOrNo;
 import com.sun.istack.NotNull;
@@ -24,8 +21,6 @@ import lombok.Data;
 */
 @Data
 public class RoleCreateDTO {
-	
-	private Set<AdminRole> adminRoles;
 	
 	@NotNull
 	@Size(min = 2, max = 36)
@@ -48,7 +43,6 @@ public class RoleCreateDTO {
 	
 	public Role toEntity() {
 		return Role.builder()
-				.adminRoles(adminRoles)
 				.roleId(roleId)
 				.roleName(roleName)
 				.roleUseYn(roleUseYn)

@@ -1,5 +1,7 @@
 package com.hans.toyprojectback.dto.adminrole;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -11,6 +13,6 @@ public class AdminRoleCreateDTO {
 	private Long adSeq;
 	
 	@NotNull
-	private Long roleSeq;
+	private List<Long> roleSeqList;
 	
 }

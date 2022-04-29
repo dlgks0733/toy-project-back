@@ -83,7 +83,6 @@ public class Admin extends BaseTimeEntity {
 	
 	public AdminInfoDTO toInfoDto() {
 		return AdminInfoDTO.builder()
-				.adminRoles(adminRoles)
 				.adId(adId)
 				.adName(adName)
 				.adPhone(adPhone)

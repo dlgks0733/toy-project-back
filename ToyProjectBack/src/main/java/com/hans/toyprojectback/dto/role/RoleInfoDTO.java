@@ -1,9 +1,7 @@
 package com.hans.toyprojectback.dto.role;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
-import com.hans.toyprojectback.domain.AdminRole;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -27,8 +25,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RoleInfoDTO {
-	
-	private Set<AdminRole> adminRoles;
 	
 	private String roleId;
 	

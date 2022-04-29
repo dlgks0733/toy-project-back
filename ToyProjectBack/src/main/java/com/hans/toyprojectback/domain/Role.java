@@ -68,7 +68,6 @@ public class Role extends BaseTimeEntity {
 	
 	public RoleInfoDTO toInfoDto() {
 		return RoleInfoDTO.builder()
-				.adminRoles(adminRoles)
 				.roleId(roleId)
 				.roleName(roleName)
 				.roleUseYn(roleUseYn)

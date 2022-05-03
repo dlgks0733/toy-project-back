@@ -5,6 +5,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import lombok.RequiredArgsConstructor;
+
 /**
 * @packageName : com.hans.toyprojectback.jwt 
 * @fileName : JwtSecurityConfig.java 
@@ -16,13 +18,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 * ----------------------------------------------------------- 
 * 2022.05.01 LEE HAN 최초 생성 
 */
+@RequiredArgsConstructor
 public class JwtSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-	private TokenProvider tokenProvider;
+	private final TokenProvider tokenProvider;
 	
-	public JwtSecurityConfig(TokenProvider tokenProvider) {
-		this.tokenProvider = tokenProvider;
-	}
+//	public JwtSecurityConfig(TokenProvider tokenProvider) {
+//		this.tokenProvider = tokenProvider;
+//	}
 	
 	@Override
 	public void configure(HttpSecurity builder) throws Exception {

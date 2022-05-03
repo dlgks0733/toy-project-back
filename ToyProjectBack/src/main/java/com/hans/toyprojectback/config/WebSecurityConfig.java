@@ -14,6 +14,8 @@ import com.hans.toyprojectback.jwt.JwtAuthenticationEntryPoint;
 import com.hans.toyprojectback.jwt.JwtSecurityConfig;
 import com.hans.toyprojectback.jwt.TokenProvider;
 
+import lombok.RequiredArgsConstructor;
+
 /**
 * @packageName : com.hans.toyprojectback.config 
 * @fileName : WebSecurityConfig.java 
@@ -27,19 +29,12 @@ import com.hans.toyprojectback.jwt.TokenProvider;
 */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private final TokenProvider tokenProvider;
 	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
-	
-	public WebSecurityConfig(TokenProvider tokenProvider, 
-			JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, 
-			JwtAccessDeniedHandler jwtAccessDeniedHandler) {
-		this.tokenProvider = tokenProvider;
-		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-		this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
-	}
 	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {

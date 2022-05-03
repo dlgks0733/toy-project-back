@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,15 +28,16 @@ import lombok.extern.slf4j.Slf4j;
 * 2022.05.01 LEE HAN 최초 생성 
 */
 @Slf4j
+@RequiredArgsConstructor
 public class JwtFilter extends GenericFilterBean {
 	
 	public static final String AUTHORIZATION_HEADER = "Authorization";
 	
-	private TokenProvider tokenProvider;
+	private final TokenProvider tokenProvider;
 	
-	public JwtFilter(TokenProvider tokenProvider) {
-		this.tokenProvider = tokenProvider;
-	}
+//	public JwtFilter(TokenProvider tokenProvider) {
+//		this.tokenProvider = tokenProvider;
+//	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

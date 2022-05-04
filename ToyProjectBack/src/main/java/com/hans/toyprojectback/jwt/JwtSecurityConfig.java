@@ -23,10 +23,6 @@ public class JwtSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurity
 
 	private final TokenProvider tokenProvider;
 	
-//	public JwtSecurityConfig(TokenProvider tokenProvider) {
-//		this.tokenProvider = tokenProvider;
-//	}
-	
 	@Override
 	public void configure(HttpSecurity builder) throws Exception {
 		JwtFilter customFilter = new JwtFilter(tokenProvider);

@@ -21,5 +21,6 @@ import lombok.NoArgsConstructor;
 public class TokenDTO {
 	
 	private String token;
+	private String adId;
 	
 }

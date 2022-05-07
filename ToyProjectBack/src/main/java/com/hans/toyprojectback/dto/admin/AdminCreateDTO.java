@@ -42,7 +42,6 @@ public class AdminCreateDTO {
 	@Size(min = 11, max = 20)
 	private String adPhone;
 	
-	@Size(min = 10, max = 20)
 	private String adTel;
 	
 	@NotNull

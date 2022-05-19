@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
-import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.enums.YesOrNo;
 
 import lombok.AllArgsConstructor;
@@ -96,15 +95,6 @@ public class Admin extends BaseTimeEntity {
 				.chgDt(getChgDt())
 				.build();
 				
-	}
-	
-	public AdminListDTO toListDto() {
-		return AdminListDTO.builder()
-				.adId(adId)
-				.adName(adName)
-				.adDept(adDept)
-				.adUseYn(adUseYn)
-				.build();
 	}
 	
 	public void update(String adPhone, String adTel, String adEmail, 

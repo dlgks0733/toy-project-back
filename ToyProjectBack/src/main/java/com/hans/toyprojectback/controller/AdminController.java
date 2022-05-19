@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
-import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 import com.hans.toyprojectback.service.AdminService;
 
@@ -76,7 +75,7 @@ public class AdminController {
 	* @return 
 	*/
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AdminListDTO>> getList() {
+	public ResponseEntity<List<AdminInfoDTO>> getList() {
 		log.info("Admin Controller GetList::: ");
 		return ResponseEntity.ok(adminService.getList());
 	}

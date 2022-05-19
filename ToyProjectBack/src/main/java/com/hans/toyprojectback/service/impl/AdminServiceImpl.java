@@ -13,7 +13,6 @@ import com.hans.toyprojectback.domain.Admin;
 import com.hans.toyprojectback.domain.Role;
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
-import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 import com.hans.toyprojectback.dto.role.RoleSummaryInfoDTO;
 import com.hans.toyprojectback.repository.AdminRepository;
@@ -74,9 +73,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<AdminListDTO> getList() {
+	public List<AdminInfoDTO> getList() {
 		log.info("Admin Service GetList::: ");
-		return adminRepository.findAll().stream().map(Admin::toListDto).collect(Collectors.toList());
+		return adminRepository.findAll().stream().map(Admin::toInfoDto).collect(Collectors.toList());
 	}	
 
 	@Transactional

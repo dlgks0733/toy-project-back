@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.hans.toyprojectback.dto.admin.AdminCreateDTO;
 import com.hans.toyprojectback.dto.admin.AdminInfoDTO;
-import com.hans.toyprojectback.dto.admin.AdminListDTO;
 import com.hans.toyprojectback.dto.admin.AdminUpdateDTO;
 
 /**
@@ -45,7 +44,7 @@ public interface AdminService {
 	* @date : 2022.04.27 
 	* @return 
 	*/
-	public List<AdminListDTO> getList();
+	public List<AdminInfoDTO> getList();
 	
 	/** 
 	* @methodName : update 
